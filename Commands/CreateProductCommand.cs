@@ -1,9 +1,9 @@
 using MediatR;
 
-public class CreateProductCommand(string name, string type, string warehouseName, int stock) : IRequest<Product>
+public class CreateProductCommand : IRequest<Product>
 {
-    public required string Name { get; set; } = name;
-    public required string Type { get; set; } = type;
-    public required string WarehouseName { get; set; } = warehouseName;
-    public int Stock { get; set; } = stock;
+    public required string Name { get; set; }
+    public required string Type { get; set; }
+    public required string WarehouseName { get; set; }
+    public int Stock { get; set; }
 }

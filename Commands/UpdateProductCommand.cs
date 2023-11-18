@@ -1,10 +1,10 @@
 using MediatR;
 
-public class UpdateProductCommand(int id, string name, string type, string warehouseName, int stock) : IRequest<Unit>
+public class UpdateProductCommand : IRequest<Unit>
 {
-    public int Id { get; set; } = id;
-    public required string Name { get; set; } = name;
-    public required string Type { get; set; } = type;
-    public required string WarehouseName { get; set; } = warehouseName;
-    public int Stock { get; set; } = stock;
+    public int Id { get; set; }
+    public required string Name { get; set; }
+    public required string Type { get; set; }
+    public required string WarehouseName { get; set; }
+    public int Stock { get; set; }
 }
