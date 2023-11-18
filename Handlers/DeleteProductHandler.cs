@@ -1,9 +1,10 @@
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
-public class DeleteProductHandler : IRequestHandler<DeleteProductCommand, int>
+public class DeleteProductHandler(DatabaseCtx ctx) : IRequestHandler<DeleteProductCommand, int>
 {
-    public Task<int> Handle(DeleteProductCommand request, CancellationToken cancellationToken)
+    public async Task<int> Handle(DeleteProductCommand request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return await ctx.Products.Where(p => p.Id == request.Id).ExecuteDeleteAsync(cancellationToken);
     }
 }

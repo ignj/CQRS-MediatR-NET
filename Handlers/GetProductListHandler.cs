@@ -1,9 +1,10 @@
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
-public class GetProductListHandler : IRequestHandler<GetProductListQuery, List<Product>>
+public class GetProductListHandler(DatabaseCtx ctx) : IRequestHandler<GetProductListQuery, List<Product>>
 {
-    public Task<List<Product>> Handle(GetProductListQuery request, CancellationToken cancellationToken)
+    public async Task<List<Product>> Handle(GetProductListQuery request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return await ctx.Products.ToListAsync(cancellationToken);
     }
 }

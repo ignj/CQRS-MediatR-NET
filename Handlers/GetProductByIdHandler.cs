@@ -1,9 +1,10 @@
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
-public class GetProductByIdHandler : IRequestHandler<GetProductByIdQuery, Product>
+public class GetProductByIdHandler(DatabaseCtx ctx) : IRequestHandler<GetProductByIdQuery, Product?>
 {
-    public Task<Product> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
+    public async Task<Product?> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return await ctx.Products.FirstOrDefaultAsync(p => p.Id == request.Id, cancellationToken);
     }
 }
