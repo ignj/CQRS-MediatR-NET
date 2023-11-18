@@ -4,7 +4,8 @@ public class CreateProductHandler(DatabaseCtx ctx) : IRequestHandler<CreateProdu
 {
     public async Task<Product> Handle(CreateProductCommand request, CancellationToken cancellationToken)
     {
-        // if (ctx.Products.Any(p => p.Name.ToLower() == request.Name.ToLower())) return 409; make response wrapper
+        if (ctx.Products.Any(p => p.Name.ToLower() == request.Name.ToLower())) throw new ConflictException($"Product {request.Name} already exists.");
+
         var product = new Product
         {
             Name = request.Name,
