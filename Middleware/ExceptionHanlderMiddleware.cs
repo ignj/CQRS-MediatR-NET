@@ -19,7 +19,7 @@ public class ExceptionHandlerMiddleware(RequestDelegate next, ILogger<ExceptionH
             logger.LogWarning("Conflict. {e}", e.ToString());
             context.Response.StatusCode = (int)HttpStatusCode.Conflict;
             context.Response.ContentType = MediaTypeNames.Application.Json;
-            await context.Response.WriteAsync($@"{{""msg"": ""{e}"" }}");
+            await context.Response.WriteAsync($@"{{""msg"": ""{e.Message}"" }}");
         }
         catch (Exception e)
         {
