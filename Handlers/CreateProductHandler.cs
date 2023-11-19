@@ -10,7 +10,8 @@ public class CreateProductHandler(DatabaseCtx ctx) : IRequestHandler<CreateProdu
         {
             Name = request.Name,
             Type = request.Type,
-            WarehouseName = request.WarehouseName
+            WarehouseName = request.WarehouseName,
+            Stock = request.Stock
         };
 
         await ctx.Products.AddAsync(product, cancellationToken);
