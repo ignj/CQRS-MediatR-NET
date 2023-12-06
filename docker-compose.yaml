@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  api:
+    restart: always
+    build: 
+      context: .
+      dockerfile: ./dockerfile
+    environment:
+      DB_CONNSTRING: "Server=postgresql;Port=5432;Database=CqrsPlayground;User Id=postgres;Password=postgres;"
+    ports:
+      - "5000:8080"
+
+  postgresql:
+    image: postgres
+    hostname: postgresql
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports: 
+      - "15432:5432"
